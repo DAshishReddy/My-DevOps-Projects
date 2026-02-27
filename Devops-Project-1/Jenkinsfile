@@ -5,8 +5,9 @@ pipeline {
             args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
+    
     environment {
-        DOCKER_IMAGE   = "ashish2999/go-py-app"
+        DOCKER_IMAGE   = "ashish2999/py-app"
         GIT_REPO       = "github.com/DAshishReddy/My-DevOps-Projects.git"
         GIT_BRANCH    = "main"
     }
@@ -57,16 +58,16 @@ pipeline {
                   docker push ${DOCKER_IMAGE}:${BUILD_NUMBER}
                 '''
             }
-        } /*
-
+        }
+        /*
         stage('Update Image Tag in K8s Manifest') {
             steps {
                 sh '''
                   sed -i "s|image: .*|image: '"${DOCKER_IMAGE}:${BUILD_NUMBER}"'|" k8s/manifests/deployment.yaml
                 '''
             }
-        }
-
+        } */
+        /*
         stage('Commit & Push Manifest Changes') {
             environment {
                 GIT_CREDS = credentials('github-creds')
@@ -82,8 +83,8 @@ pipeline {
                   git push https://${GIT_CREDS_USR}:${GIT_CREDS_PSW}@${GIT_REPO} ${GIT_BRANCH}
                 '''
             }
-        }
-    } */
+        } */
+    }
 
     post {
         success {
@@ -93,5 +94,4 @@ pipeline {
             echo "❌ Pipeline failed"
         }
     }
-}
 }
