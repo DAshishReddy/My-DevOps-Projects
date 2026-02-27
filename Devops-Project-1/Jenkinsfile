@@ -23,6 +23,11 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
+            agent {
+                docker {
+                    image 'sonarsource/sonar-scanner-cli:latest'
+                }
+            }
             environment {
                 SONAR_TOKEN = credentials('sonar-token')
             }
