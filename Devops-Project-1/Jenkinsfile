@@ -29,7 +29,6 @@ pipeline {
             steps {
         withSonarQubeEnv('sonarqube') {
             script {
-                def scannerHome = tool 'sonar-scanner'
                 sh '''
                   sonar-scanner \
                   -Dsonar.projectKey=jenkins-sonar-docker-py-app \
