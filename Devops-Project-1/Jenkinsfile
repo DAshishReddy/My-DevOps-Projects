@@ -31,8 +31,8 @@ pipeline {
             script {
                 def scannerHome = tool 'sonar-scanner'
                 sh '''
-                  ''' + scannerHome + '''/bin/sonar-scanner \
-                  -Dsonar.projectKey=jenkins-sonar-docker \
+                  sonar-scanner \
+                  -Dsonar.projectKey=jenkins-sonar-docker-py-app \
                   -Dsonar.sources=. \
                   -Dsonar.login=$SONAR_TOKEN
                 '''
